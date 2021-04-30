@@ -56,7 +56,23 @@ class ShowBookList extends Component {
               <br />
               <hr />
             </div>
-
+            <input
+                    type='text'
+                    placeholder='Search for an article'
+                    name='article_search'
+                    className='form-control'
+                    class="searchbox"
+                    value={this.state.article_search}
+                    onChange={this.onChange}
+                  />
+                  <button
+                  type='submit'
+                  name='submit'
+                  color='blue'
+                  class="button"
+                  > Search
+                  </button>
+                  
           </div>
 
           <div className="list">
