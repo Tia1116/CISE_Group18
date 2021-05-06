@@ -93,14 +93,14 @@ class showBookDetails extends Component {
             <div className="col-md-10 m-auto">
               <br /> <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Book List
+                  Show Article List
               </Link>
             </div>
             <br />
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Book's Record</h1>
+              <h1 className="display-4 text-center">Article's Record</h1>
               <p className="lead text-center">
-                  View Book's Info
+                  View Article's Info
               </p>
               <hr /> <br />
             </div>
@@ -111,12 +111,12 @@ class showBookDetails extends Component {
 
           <div className="row">
             <div className="col-md-6">
-              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,book._id)}>Delete Book</button><br />
+              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,book._id)}>Delete Article</button><br />
             </div>
 
             <div className="col-md-6">
               <Link to={`/edit-book/${book._id}`} className="btn btn-outline-info btn-lg btn-block">
-                    Edit Book
+                    Edit Article
               </Link>
               <br />
             </div>

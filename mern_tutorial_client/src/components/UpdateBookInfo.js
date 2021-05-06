@@ -71,13 +71,13 @@ class UpdateBookInfo extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show BooK List
+                  Show Article List
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Book</h1>
+              <h1 className="display-4 text-center">Edit Article</h1>
               <p className="lead text-center">
-                  Update Book's Info
+                  Update Article's Info
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@ class UpdateBookInfo extends Component {
               <label htmlFor="title">Title</label>
               <input
                 type='text'
-                placeholder='Title of the Book'
+                placeholder='Title of the article'
                 name='title'
                 className='form-control'
                 value={this.state.title}
@@ -125,7 +125,7 @@ class UpdateBookInfo extends Component {
             <label htmlFor="description">Description</label>
               <input
                 type='text'
-                placeholder='Describe this book'
+                placeholder='Describe this article'
                 name='description'
                 className='form-control'
                 value={this.state.description}
@@ -148,7 +148,7 @@ class UpdateBookInfo extends Component {
             <label htmlFor="publisher">Publisher</label>
               <input
                 type='text'
-                placeholder='Publisher of this Book'
+                placeholder='Publisher of this article'
                 name='publisher'
                 className='form-control'
                 value={this.state.publisher}
@@ -156,7 +156,7 @@ class UpdateBookInfo extends Component {
               />
             </div>
 
-            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Book</button>
+            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Article</button>
             </form>
           </div>
 

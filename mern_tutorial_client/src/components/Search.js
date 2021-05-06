@@ -49,16 +49,30 @@ class ShowBookList extends Component {
             </div>
 
             <div className="col-md-11">
-            <Link to="/Search" className="btn btn-outline-warning float-left">
-                Search
-              </Link>   
               <Link to="/create-book" className="btn btn-outline-warning float-right">
                 + Add New Article
               </Link>
               <br />
               <br />
               <hr />
-            </div>     
+            </div>
+            <input
+                    type='text'
+                    placeholder='Search for an article'
+                    name='article_search'
+                    className='form-control'
+                    class="searchbox"
+                    value={this.state.article_search}
+                    onChange={this.onChange}
+                  />
+                  <button
+                  type='submit'
+                  name='submit'
+                  color='blue'
+                  class="button"
+                  > Search
+                  </button>
+                  
           </div>
 
           <div className="list">
