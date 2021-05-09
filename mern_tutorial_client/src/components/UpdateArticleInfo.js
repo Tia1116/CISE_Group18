@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
-class UpdateBookInfo extends Component {
+class UpdateArticleInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,9 +19,9 @@ class UpdateBookInfo extends Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/books/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/'+this.props.match.params.id)
       .then(res => {
-        // this.setState({...this.state, book: res.data})
+        // this.setState({...this.state, article: res.data})
         this.setState({
           title: res.data.title,
           isbn: res.data.isbn,
@@ -32,7 +32,7 @@ class UpdateBookInfo extends Component {
         })
       })
       .catch(err => {
-        console.log("Error from UpdateBookInfo");
+        console.log("Error from UpdateArticleInfo");
       })
   };
 
@@ -53,19 +53,19 @@ class UpdateBookInfo extends Component {
     };
 
     axios
-      .put('http://localhost:8082/api/books/'+this.props.match.params.id, data)
+      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
       .then(res => {
-        this.props.history.push('/show-book/'+this.props.match.params.id);
+        this.props.history.push('/show-article/'+this.props.match.params.id);
       })
       .catch(err => {
-        console.log("Error in UpdateBookInfo!");
+        console.log("Error in UpdateArticleInfo!");
       })
   };
 
 
   render() {
     return (
-      <div className="UpdateBookInfo">
+      <div className="UpdateArticleInfo">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -166,4 +166,4 @@ class UpdateBookInfo extends Component {
   }
 }
 
-export default UpdateBookInfo;
+export default UpdateArticleInfo;

@@ -2,45 +2,45 @@ import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import BookCard from './BookCard';
+import ArticleCard from './ArticleCard';
 
-class ShowBookList extends Component {
+class ShowArticleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      articles: []
     };
   }
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/books')
+      .get('http://localhost:8082/api/articles')
       .then(res => {
         this.setState({
-          books: res.data
+          articles: res.data
         })
       })
       .catch(err =>{
-        console.log('Error from ShowBookList');
+        console.log('Error from ShowArticleList');
       })
   };
 
 
   render() {
-    const books = this.state.books;
-    console.log("PrintBook: " + books);
-    let bookList;
+    const articles = this.state.articles;
+    console.log("PrintArticle: " + articles);
+    let articleList;
 
-    if(!books) {
-      bookList = "there is no articles record!";
+    if(!articles) {
+      articleList = "there is no articles record!";
     } else {
-      bookList = books.map((book, k) =>
-        <BookCard book={book} key={k} />
+      articleList = articles.map((article, k) =>
+        <ArticleCard article={article} key={k} />
       );
     }
 
     return (
-      <div className="ShowBookList">
+      <div className="ShowArticleList">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -49,10 +49,10 @@ class ShowBookList extends Component {
             </div>
 
             <div className="col-md-11">
-            <Link to="/Search" className="btn btn-outline-warning float-left">
+            <Link to="/search-article" className="btn btn-outline-warning float-left">
                 Search
               </Link>   
-              <Link to="/create-book" className="btn btn-outline-warning float-right">
+              <Link to="/create-article" className="btn btn-outline-warning float-right">
                 + Add New Article
               </Link>
               <br />
@@ -62,7 +62,7 @@ class ShowBookList extends Component {
           </div>
 
           <div className="list">
-                {bookList}
+                {articleList}
           </div>
         </div>
       </div>
@@ -70,4 +70,4 @@ class ShowBookList extends Component {
   }
 }
 
-export default ShowBookList;
+export default ShowArticleList;
