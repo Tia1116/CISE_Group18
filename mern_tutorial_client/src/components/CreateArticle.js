@@ -8,6 +8,7 @@ class CreateArticle extends Component {
   constructor() {
     super();
     this.state = {
+      titles: '',
       author:'',
       published_date:'',
       credibity_rating:'',
@@ -24,6 +25,7 @@ class CreateArticle extends Component {
     e.preventDefault();
 
     const data = {
+      titles: this.state.titles,
       author: this.state.author,
       published_date: this.state.published_date,
       credibity_rating: this.state.credibity_rating,
@@ -35,6 +37,7 @@ class CreateArticle extends Component {
       .post('http://localhost:8082/api/articles', data)
       .then(res => {
         this.setState({
+          titles: '',
           author:'',
           published_date:'',
           credibity_rating:'',
@@ -70,6 +73,17 @@ class CreateArticle extends Component {
               <div className='form-group'>
                   <input
                     type='text'
+                    placeholder='titles'
+                    name='titles'
+                    className='form-control'
+                    value={this.state.titles}
+                    onChange={this.onChange}
+                  />
+                </div>
+
+              <div className='form-group'>
+                  <input
+                    type='text'
                     placeholder='author'
                     name='author'
                     className='form-control'
@@ -95,7 +109,7 @@ class CreateArticle extends Component {
                     min="1" 
                     max="5"
                     placeholder='Credibity rating'
-                    name='description'
+                    name='credibity_rating'
                     className='form-control'
                     value={this.state.credibity_rating}
                     onChange={this.onChange}
@@ -106,7 +120,7 @@ class CreateArticle extends Component {
                   <input
                     type='text'
                     placeholder='SE Method'
-                    name='title'
+                    name='SE_method'
                     className='form-control'
                     value={this.state.SE_method}
                     onChange={this.onChange}
@@ -117,7 +131,7 @@ class CreateArticle extends Component {
                   <input
                     type='text'
                     placeholder='Reasearch method'
-                    name='isbn'
+                    name='reasearch_method'
                     className='form-control'
                     value={this.state.reasearch_method}
                     onChange={this.onChange}

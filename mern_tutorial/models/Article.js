@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const ArticleSchema = new mongoose.Schema({
+  titles: {
+    type: String
+  },
   author: {
     type: String,
     required: true

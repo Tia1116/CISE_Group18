@@ -55,7 +55,7 @@ class showArticleDetails extends Component {
           <tr>
             <th scope="row">1</th>
             <td>Title</td>
-            <td>{ article.title }</td>
+            <td>{ article.titles }</td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -64,23 +64,23 @@ class showArticleDetails extends Component {
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td>ISBN</td>
-            <td>{ article.isbn }</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Publisher</td>
-            <td>{ article.publisher }</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
             <td>Published Date</td>
             <td>{ article.published_date }</td>
           </tr>
           <tr>
+            <th scope="row">4</th>
+            <td>Credibity Rating</td>
+            <td>{ article.credibity_rating }</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>SE Method</td>
+            <td>{ article.SE_method }</td>
+          </tr>
+          <tr>
             <th scope="row">6</th>
-            <td>Description</td>
-            <td>{ article.description }</td>
+            <td>Reasearch Method</td>
+            <td>{ article.reasearch_method }</td>
           </tr>
         </tbody>
       </table>
