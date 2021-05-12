@@ -3,36 +3,36 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
-class UpdateBookInfo extends Component {
+class UpdateArticleInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      isbn: '',
-      author: '',
-      description: '',
-      published_date: '',
-      publisher: ''
+      titles: '',
+      author:'',
+      published_date:'',
+      credibity_rating:'',
+      SE_method: '',
+      reasearch_method:''
     };
   }
 
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/books/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/'+this.props.match.params.id)
       .then(res => {
-        // this.setState({...this.state, book: res.data})
+        // this.setState({...this.state, article: res.data})
         this.setState({
-          title: res.data.title,
-          isbn: res.data.isbn,
+          titles: res.data.titles,
           author: res.data.author,
-          description: res.data.description,
           published_date: res.data.published_date,
-          publisher: res.data.publisher
+          credibity_rating: res.data.credibity_rating,
+          SE_method: res.data.SE_method,
+          reasearch_method: res.data.reasearch_method
         })
       })
       .catch(err => {
-        console.log("Error from UpdateBookInfo");
+        console.log("Error from UpdateArticleInfo");
       })
   };
 
@@ -44,28 +44,28 @@ class UpdateBookInfo extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title,
-      isbn: this.state.isbn,
+      titles: this.state.titles,
       author: this.state.author,
-      description: this.state.description,
       published_date: this.state.published_date,
-      publisher: this.state.publisher
+      credibity_rating: this.state.credibity_rating,
+      SE_method: this.state.SE_method,
+      reasearch_method: this.state.reasearch_method
     };
 
     axios
-      .put('http://localhost:8082/api/books/'+this.props.match.params.id, data)
+      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
       .then(res => {
-        this.props.history.push('/show-book/'+this.props.match.params.id);
+        this.props.history.push('/show-article/'+this.props.match.params.id);
       })
       .catch(err => {
-        console.log("Error in UpdateBookInfo!");
+        console.log("Error in UpdateArticleInfo!");
       })
   };
 
 
   render() {
     return (
-      <div className="UpdateBookInfo">
+      <div className="UpdateArticleInfo">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -84,57 +84,30 @@ class UpdateBookInfo extends Component {
 
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
-            <div className='form-group'>
-              <label htmlFor="title">Title</label>
+            
+          <div className='form-group'>
               <input
                 type='text'
-                placeholder='Title of the article'
-                name='title'
+                placeholder='titles'
+                name='titles'
                 className='form-control'
-                value={this.state.title}
-                onChange={this.onChange}
-              />
-            </div>
-            <br />
-
-            <div className='form-group'>
-            <label htmlFor="isbn">ISBN</label>
-              <input
-                type='text'
-                placeholder='ISBN'
-                name='isbn'
-                className='form-control'
-                value={this.state.isbn}
+                value={this.state.titles}
                 onChange={this.onChange}
               />
             </div>
 
             <div className='form-group'>
-            <label htmlFor="author">Author</label>
-              <input
-                type='text'
-                placeholder='Author'
-                name='author'
-                className='form-control'
-                value={this.state.author}
-                onChange={this.onChange}
-              />
+                <input
+                  type='text'
+                  placeholder='author'
+                  name='author'
+                  className='form-control'
+                  value={this.state.author}
+                  onChange={this.onChange}
+                />
             </div>
 
             <div className='form-group'>
-            <label htmlFor="description">Description</label>
-              <input
-                type='text'
-                placeholder='Describe this article'
-                name='description'
-                className='form-control'
-                value={this.state.description}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className='form-group'>
-            <label htmlFor="published_date">Published Date</label>
               <input
                 type='date'
                 placeholder='published_date'
@@ -144,14 +117,38 @@ class UpdateBookInfo extends Component {
                 onChange={this.onChange}
               />
             </div>
+
             <div className='form-group'>
-            <label htmlFor="publisher">Publisher</label>
+              <input
+                type='number' 
+                min="1" 
+                max="5"
+                placeholder='Credibity rating'
+                name='credibity_rating'
+                className='form-control'
+                value={this.state.credibity_rating}
+                onChange={this.onChange}
+              />
+            </div>
+
+            <div className='form-group'>
               <input
                 type='text'
-                placeholder='Publisher of this article'
-                name='publisher'
+                placeholder='SE Method'
+                name='SE_method'
                 className='form-control'
-                value={this.state.publisher}
+                value={this.state.SE_method}
+                onChange={this.onChange}
+              />
+            </div>
+
+            <div className='form-group'>
+              <input
+                type='text'
+                placeholder='Reasearch method'
+                name='reasearch_method'
+                className='form-control'
+                value={this.state.reasearch_method}
                 onChange={this.onChange}
               />
             </div>
@@ -166,4 +163,4 @@ class UpdateBookInfo extends Component {
   }
 }
 
-export default UpdateBookInfo;
+export default UpdateArticleInfo;

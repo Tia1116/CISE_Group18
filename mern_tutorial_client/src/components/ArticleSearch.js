@@ -3,17 +3,15 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-
-class CreateBook extends Component {
+class ArticleSearch extends Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      isbn:'',
-      author:'',
-      description:'',
-      published_date:'',
-      publisher:''
+      author:''
+      // published_date:'',
+      // credibity_rating:'',
+      // SE_method: '',
+      // reasearch_method:''
     };
   }
 
@@ -25,35 +23,34 @@ class CreateBook extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title,
-      isbn: this.state.isbn,
-      author: this.state.author,
-      description: this.state.description,
-      published_date: this.state.published_date,
-      publisher: this.state.publisher
+      author: this.state.author
+      // published_date: this.state.published_date,
+      // credibity_rating: this.state.credibity_rating,
+      // SE_Method: this.state.SE_method,
+      // Reasearch_method: this.state.Reasearch_method
     };
 
     axios
-      .post('http://localhost:8082/api/books', data)
+      .get('ArticleSearch', data)
       .then(res => {
         this.setState({
-          title: '',
-          isbn:'',
-          author:'',
-          description:'',
-          published_date:'',
-          publisher:''
+          author:''
+          // published_date:'',
+          // credibity_rating:'',
+          // SE_Method: '',
+          // Reasearch_method:''
         })
         this.props.history.push('/');
       })
       .catch(err => {
         console.log("Error in Createarticles!");
       })
+      ArticleSearch.articles.find( { author: "author" } );
   };
 
   render() {
     return (
-      <div className="CreateBook">
+      <div className="ArticleSearch">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -63,39 +60,17 @@ class CreateBook extends Component {
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Add Article</h1>
+              <h1 className="display-4 text-center">Search</h1>
               <p className="lead text-center">
-                  Create new article
+                  Options
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Title of the articles'
-                    name='title'
-                    className='form-control'
-                    value={this.state.title}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <br />
 
-                <div className='form-group'>
+              <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='DOI'
-                    name='isbn'
-                    className='form-control'
-                    value={this.state.isbn}
-                    onChange={this.onChange}
-                  />
-                </div>
-
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Author'
+                    placeholder='author'
                     name='author'
                     className='form-control'
                     value={this.state.author}
@@ -103,18 +78,7 @@ class CreateBook extends Component {
                   />
                 </div>
 
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Describe this article'
-                    name='description'
-                    className='form-control'
-                    value={this.state.description}
-                    onChange={this.onChange}
-                  />
-                </div>
-
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='date'
                     placeholder='published_date'
@@ -124,28 +88,58 @@ class CreateBook extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+
                 <div className='form-group'>
                   <input
-                    type='text'
-                    placeholder='Publisher of this articles'
-                    name='publisher'
+                    type='number' 
+                    min="1" 
+                    max="5"
+                    placeholder='Credibity rating'
+                    name='credibity_rating'
                     className='form-control'
-                    value={this.state.publisher}
+                    value={this.state.credibity_rating}
                     onChange={this.onChange}
                   />
                 </div>
+
+                <div className='form-group'>
+                  <input
+                    type='text'
+                    placeholder='SE Method'
+                    name='SE_method'
+                    className='form-control'
+                    value={this.state.SE_method}
+                    onChange={this.onChange}
+                  />
+                </div>
+
+                <div className='form-group'>
+                  <input
+                    type='text'
+                    placeholder='Reasearch method'
+                    name='reasearch_method'
+                    className='form-control'
+                    value={this.state.reasearch_method}
+                    onChange={this.onChange}
+                  />
+                </div> */}
+
 
                 <input
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4"
                 />
               </form>
+
+        
           </div>
           </div>
         </div>
       </div>
+      
     );
   }
 }
 
-export default CreateBook;
+export default ArticleSearch;
+
