@@ -3,17 +3,15 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-
-class Search extends Component {
+class ArticleSearch extends Component {
   constructor() {
     super();
     this.state = {
-      titles: '',
-      author:'',
-      published_date:'',
-      credibity_rating:'',
-      SE_method: '',
-      reasearch_method:''
+      author:''
+      // published_date:'',
+      // credibity_rating:'',
+      // SE_method: '',
+      // reasearch_method:''
     };
   }
 
@@ -25,24 +23,22 @@ class Search extends Component {
     e.preventDefault();
 
     const data = {
-      titles: this.state.titles,
-      author: this.state.author,
-      published_date: this.state.published_date,
-      credibity_rating: this.state.credibity_rating,
-      SE_Method: this.state.SE_method,
-      Reasearch_method: this.state.Reasearch_method
+      author: this.state.author
+      // published_date: this.state.published_date,
+      // credibity_rating: this.state.credibity_rating,
+      // SE_Method: this.state.SE_method,
+      // Reasearch_method: this.state.Reasearch_method
     };
 
     axios
-      .post('http://localhost:8082/api/articles', data)
+      .get('ArticleSearch', data)
       .then(res => {
         this.setState({
-          titles: '',
-          author:'',
-          published_date:'',
-          credibity_rating:'',
-          SE_Method: '',
-          Reasearch_method:''
+          author:''
+          // published_date:'',
+          // credibity_rating:'',
+          // SE_Method: '',
+          // Reasearch_method:''
         })
         this.props.history.push('/');
       })
@@ -53,7 +49,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="CreateArticle">
+      <div className="ArticleSearch">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -69,17 +65,6 @@ class Search extends Component {
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                
-              <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='titles'
-                    name='titles'
-                    className='form-control'
-                    value={this.state.titles}
-                    onChange={this.onChange}
-                  />
-                </div>
 
               <div className='form-group'>
                   <input
@@ -92,7 +77,7 @@ class Search extends Component {
                   />
                 </div>
 
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='date'
                     placeholder='published_date'
@@ -136,7 +121,7 @@ class Search extends Component {
                     value={this.state.reasearch_method}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
 
 
                 <input
@@ -148,8 +133,10 @@ class Search extends Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }
 
-export default Search;
+export default ArticleSearch;
+
