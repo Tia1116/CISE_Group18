@@ -45,6 +45,7 @@ class ArticleSearch extends Component {
       .catch(err => {
         console.log("Error in Createarticles!");
       })
+      ArticleSearch.articles.find( { author: "author" } );
   };
 
   render() {
@@ -129,6 +130,8 @@ class ArticleSearch extends Component {
                     className="btn btn-outline-warning btn-block mt-4"
                 />
               </form>
+
+        
           </div>
           </div>
         </div>
