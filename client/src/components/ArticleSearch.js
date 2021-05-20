@@ -7,11 +7,11 @@ class ArticleSearch extends Component {
   constructor() {
     super();
     this.state = {
-      author:''
-      // published_date:'',
-      // credibity_rating:'',
-      // SE_method: '',
-      // reasearch_method:''
+      author:'',
+      published_date:'',
+      credibity_rating:'',
+      SE_method: '',
+      reasearch_method:''
     };
   }
 
@@ -23,29 +23,61 @@ class ArticleSearch extends Component {
     e.preventDefault();
 
     const data = {
-      author: this.state.author
-      // published_date: this.state.published_date,
-      // credibity_rating: this.state.credibity_rating,
-      // SE_Method: this.state.SE_method,
-      // Reasearch_method: this.state.Reasearch_method
+      author: this.state.author,
+      published_date: this.state.published_date,
+      credibity_rating: this.state.credibity_rating,
+      SE_Method: this.state.SE_method,
+      Reasearch_method: this.state.Reasearch_method
     };
 
     axios
       .get('ArticleSearch', data)
       .then(res => {
         this.setState({
-          author:''
-          // published_date:'',
-          // credibity_rating:'',
-          // SE_Method: '',
-          // Reasearch_method:''
+          author:'',
+          published_date:'',
+          credibity_rating:'',
+          SE_Method: '',
+          Reasearch_method:''
         })
         this.props.history.push('/');
       })
       .catch(err => {
         console.log("Error in Createarticles!");
       })
-      ArticleSearch.articles.find( { author: "author" } );
+      const { MongoClient } = require("mongodb");
+      // Replace the uri string with your MongoDB deployment's connection string.
+      const uri =
+        "mongodb+srv://FelixN:v@kEw*6JzY7z@mern-tutorial.6aeat.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+      const client = new MongoClient(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      async function run() {
+        try {
+          await client.connect();
+          const database = client.db("myFirstDatabase");
+          const articles = database.collection("articles");
+          // query for articles that have a runtime less than 15 minutes
+          const query = { author: "author" };
+          const options = {
+            // sort returned documents in ascending order by title (A->Z)
+            sort: { title: 1 },
+          // Include only the `title` and `imdb` fields in each returned document
+            projection: { _id: 0, titles: 1, author: 1, published_date: 1, credibity_rating: 1, SE_method: 1, reasearch_method: 1, updated_date: 0, __v: 0 },
+          };
+          const cursor = articles.find(query, options);
+          // print a message if no documents were found
+          if ((await cursor.count()) === 0) {
+            console.log("No documents found!");
+          }
+          // replace console.dir with your callback to access individual elements
+          await cursor.forEach(console.dir);
+        } finally {
+          await client.close();
+        }
+      }
+      run().catch(console.dir);
   };
 
   render() {
@@ -78,10 +110,23 @@ class ArticleSearch extends Component {
                   />
                 </div>
 
-                {/* <div className='form-group'>
+                <div className='form-group'>
+                  <label>Start between date</label>
                   <input
                     type='date'
-                    placeholder='published_date'
+                    placeholder='Start between date'
+                    name='published_date'
+                    className='form-control'
+                    value={this.state.published_date}
+                    onChange={this.onChange}
+                  />
+                  </div>
+                  
+                  <div className='form-group'>
+                  <label>End between date</label>
+                  <input
+                    type='date'
+                    placeholder='End between date'
                     name='published_date'
                     className='form-control'
                     value={this.state.published_date}
@@ -122,7 +167,7 @@ class ArticleSearch extends Component {
                     value={this.state.reasearch_method}
                     onChange={this.onChange}
                   />
-                </div> */}
+                </div>
 
 
                 <input
@@ -142,4 +187,5 @@ class ArticleSearch extends Component {
 }
 
 export default ArticleSearch;
+
 
